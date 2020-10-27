@@ -1,11 +1,11 @@
 
-function split_string(s, p)
+function string_split(s, p)
     local rt= {}
     string.gsub(s, '[^'..p..']+', function(w) table.insert(rt, w) end )
     return rt
 end
 
-function trim(s)
+function string_trim(s)
     return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
@@ -13,7 +13,7 @@ g_lstScore = {}
 
 function read_file(szFilePath)
     for szLine in io.lines(szFilePath) do
-        lstContent = split_string(trim(szLine), ",")
+        lstContent = string_split(string_trim(szLine), ",")
 
         local dictItem = {}
         dictItem["name"] = lstContent[1]
