@@ -93,7 +93,26 @@ function check_student_info()
     end
 end
 
+function one()
+    one = g_lstScore[1]
+    for i = 1, #g_lstScore, 1 do
+        if g_lstScore[i]["avg"] >= 90 then
+            if g_lstScore[i]["variance"] < one["variance"] then
+                one = g_lstScore[i]
+            end
+        else
+        end
+    end
+
+    return one
+end
+
 read_file("模拟考试.csv")
 
 check_student_info()
 print_score()
+
+theOne = one()
+
+print("============华丽的分割线============")
+print("最终人选是 →_→ " .. theOne["name"])
