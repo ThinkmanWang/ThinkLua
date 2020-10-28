@@ -16,10 +16,10 @@ function read_file(szFilePath)
         lstContent = string_split(string_trim(szLine), ",")
 
         local dictItem = {}
-        dictItem["name"] = lstContent[1]
+        dictItem["name"] = string_trim(lstContent[1])
         dictItem["scores"] = {}
         for i = 2, 6, 1 do
-            table.insert(dictItem["scores"], tonumber(lstContent[i]))
+            table.insert(dictItem["scores"], tonumber(string_trim(lstContent[i])))
         end
 
         table.insert(g_lstScore, dictItem)
