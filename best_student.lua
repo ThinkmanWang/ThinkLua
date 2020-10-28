@@ -74,11 +74,22 @@ function avg_score(lstScore)
     return nSum / #lstScore
 end
 
+function variance(lstScore)
+    nAvg = avg_score(lstScore)
+    local nSum = 0
+    for i = 1, #lstScore, 1 do
+        nSum = nSum + (lstScore[i] - nAvg)^2
+    end
+
+    return nSum / #lstScore
+end
+
 function check_student_info()
     for i = 1, #g_lstScore, 1 do
         g_lstScore[i]["max"] = max_score(g_lstScore[i]["scores"])
         g_lstScore[i]["min"] = min_score(g_lstScore[i]["scores"])
         g_lstScore[i]["avg"] = avg_score(g_lstScore[i]["scores"])
+        g_lstScore[i]["variance"] = variance(g_lstScore[i]["scores"])
     end
 end
 
