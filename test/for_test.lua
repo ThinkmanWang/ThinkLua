@@ -12,3 +12,16 @@ days = {"Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"}
 for i,v in ipairs(days) do
     print(i .. " -> " .. v)
 end
+
+
+function wake_up(nTime)
+    for i = 1, nTime, 1 do
+        print("起床啦!!!")
+    end
+end
+
+function copy_homework(nTime)
+    for i = 1, nTime, 1 do
+        print("起床啦!!!")
+    end
+end
