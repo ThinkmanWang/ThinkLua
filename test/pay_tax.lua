@@ -114,52 +114,6 @@ function init_employee_list()
     return json.decode(szJson)
 end
 
---function tax(nPay)
---    if nPay <= 3000 then
---        return nPay * 0.03
---    elseif nPay > 3000 and nPay <= 12000 then
---        return 3000 * 0.03 + (nPay - 3000) * 0.1
---    elseif nPay > 12000 and nPay <= 25000 then
---        return 3000 * 0.03 + 9000 * 0.1 + (nPay - 12000) * 0.2
---    elseif nPay > 25000 and nPay <= 35000 then
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + (nPay - 25000) * 0.25
---    elseif nPay > 35000 and nPay <= 55000 then
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + 10000 * 0.25 + (nPay - 35000) * 0.3
---    elseif nPay > 55000 and nPay <= 80000 then
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + 10000 * 0.25 + 20000 * 0.3 + (nPay - 55000) * 0.35
---    else  -- > 80000
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + 10000 * 0.25 + 20000 * 0.3 + 25000 * 0.35 + (nPay - 80000) * 0.45
---    end
---end
-
-function tax(nPay)
-    if nPay <= 3000 then
-        return nPay * 0.03
-    elseif nPay > 3000 and nPay <= 12000 then
-        return tax(3000) + (nPay - 3000) * 0.1
-    elseif nPay > 12000 and nPay <= 25000 then
-        return tax(12000) + (nPay - 12000) * 0.2
-    elseif nPay > 25000 and nPay <= 35000 then
-        return tax(25000) + (nPay - 25000) * 0.25
-    elseif nPay > 35000 and nPay <= 55000 then
-        return tax(35000) + (nPay - 35000) * 0.3
-    elseif nPay > 55000 and nPay <= 80000 then
-        return tax(55000) + (nPay - 55000) * 0.35
-    else  -- > 80000
-        return tax(80000) + (nPay - 80000) * 0.45
-    end
-
-end
-
-function get_pay(nFinal)
-    local nPay = nFinal
-    while nPay - tax(nPay) < nFinal do
-        nPay = nPay + 1
-    end
-
-    return nPay
-end
-
 ---
 ---程序正式开始
 ---
@@ -170,15 +124,6 @@ print(json.encode(g_lstEmployee))
 --- TODO list
 --- 1. 算出g_lstEmployee 中每个人的所得税和税后收入
 --- 2. 公司来了个牛人, 要求工资是税后至少35000, 问: 他税前工资至少是多少?
---- 3. 公司又来了个牛人, 要求工资是税后至少78000, 问: 他税前工资至少是多少?
+--- 3. 公司又来了个牛人, 要求工资是税后至少78000, 问: 他税前工资至少是多少? 
 ---
-
-for i = 1, #g_lstEmployee do
-    g_lstEmployee[i]["tax"] = tax(g_lstEmployee[i]["pay"])
-    g_lstEmployee[i]["final"] = g_lstEmployee[i]["pay"] - g_lstEmployee[i]["tax"]
-end
-print(json.encode(g_lstEmployee))
-
-print("税后工资35000的税前工资是: " .. get_pay(35000))
-print("税后工资78000的税前工资是: " .. get_pay(78000))
 
