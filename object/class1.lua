@@ -21,4 +21,4 @@ function Plane.takeoff(self, szTxt)
 end
 
 plane = Plane.new(nil, 100)
-plane = Plane.takeoff(plane,"I'm fly")
+plane = plane.takeoff(plane,"I'm fly")
