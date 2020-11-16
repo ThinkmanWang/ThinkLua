@@ -153,7 +153,6 @@ end
 
 function get_pay(nFinal)
     local nPay = nFinal
-
     while nPay - tax(nPay) < nFinal do
         nPay = nPay + 1
     end
