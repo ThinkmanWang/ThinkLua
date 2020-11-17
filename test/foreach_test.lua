@@ -3,13 +3,92 @@
 --- Created by wangxiaofeng.
 --- DateTime: 2020/11/6 12:22 AM
 ---
+print("======================1=========================")
+function test1()
+    for i = 1, 10000, 1 do
+        if 0 == ((i + 1) * 3 / 2 + 40) / 4 - 25 then
+            print(i)
+        end
+    end
+end
+test1()
 
-for x = 0, 100, 1 do
-    for y = 0, 100, 1 do
-        for z = 0, 100, 1 do
-            if x + y + z == 100 then
-                print(x, y, z)
+print("======================2=========================")
+function test2()
+    for x = 0, 168, 1 do
+        for y = 0, 168, 1 do
+            if 168 == x + y
+                    and 76 == x / 8 + y * 3 / 4
+            then
+                print(x, y)
             end
         end
     end
 end
+test2()
+
+print("======================3=========================")
+function test3()
+    local nSteps = 1
+    while true do
+        if 1 == nSteps % 2
+                and 2 == nSteps % 3
+                and 4 == nSteps % 5
+                and 5 == nSteps % 6
+                and 0 == nSteps % 7
+        then
+            print("楼梯 " .. nSteps .. " 阶")
+            break
+        end
+
+        nSteps = nSteps + 1
+    end
+end
+test3()
+
+print("======================4=========================")
+function test4()
+    --假设 1分X个, 2分Y个, 5分Z个
+    for x = 1, 100, 1 do
+        for y = 1, 50, 1 do
+            for z = 1, 20, 1 do
+                if 100 == 1 * x + 2 * y + 5 * z then
+                    print(x, y, z)
+                end
+            end
+        end
+    end
+end
+test4()
+
+function isprime(nNum)
+    if 2 == nNum then
+        return true
+    end
+
+    if 0 == nNum % 2 then
+        return false
+    end
+
+    for x = 2, nNum / 2, 1 do
+        if nNum % x == 0 then
+            return false
+        else
+
+        end
+    end
+
+    return true
+end
+
+print("======================5=========================")
+function goldbach(nNum)
+    for i = 2, nNum - 1, 1 do
+        local a = i
+        local b = nNum - i
+        if isprime(a) and isprime(b) then
+            print(a, b)
+        end
+    end
+end
+goldbach(1024000)
