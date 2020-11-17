@@ -83,7 +83,7 @@ end
 
 print("======================5=========================")
 function goldbach(nNum)
-    for i = 2, nNum - 1, 1 do
+    for i = 3, nNum - 1, 2 do
         local a = i
         local b = nNum - i
         if isprime(a) and isprime(b) then
