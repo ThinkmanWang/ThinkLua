@@ -32,5 +32,10 @@ print(json.encode(thinkutils.common.datetime.date_between_start_end("2020-10-25"
 
 print(json.encode(thinkutils.common.string.split("2020-12-13", "-")))
 
-local lstCsv = thinkutils.common.csvutils.csv_2_dict_list("test/test.csv")
-print(thinkutils.common.json.encode(lstCsv))
+local lstCsv = thinkutils.common.csvutils.csv_2_dictlist("test/test.csv")
+--print(thinkutils.common.json.encode(lstCsv))
+thinkutils.common.csvutils.dictlist_2_csv(lstCsv, "out.csv")
+
+
+
+print("FINISHED!!!")

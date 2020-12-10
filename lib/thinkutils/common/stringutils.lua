@@ -17,4 +17,8 @@ stringutils.trim = function (s)
     return (s:gsub("^%s*(.-)%s*$", "%1"))
 end
 
+stringutils.is_empty = function (szTxt)
+    return nil == szTxt or #(stringutils.trim(szTxt)) <= 0
+end
+
 return stringutils
