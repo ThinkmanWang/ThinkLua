@@ -42,6 +42,23 @@ datetime.datetime_2_timestamp = function (szDate)
     return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=lstTime[1], min=lstTime[2], sec=lstTime[3]})
 end
 
+datetime.firstday_of_month = function (szAnyDate)
+    local lstDate = stringutils.split(szAnyDate, "-")
+    return string.format("%s-%s-01", lstDate[1], lstDate[2])
+end
+
+datetime.lastday_of_month = function (szAnyDate)
+    local nTimestamp = datetime.date_2_timestamp(szAnyDate)
+    nTimestamp = nTimestamp + 31 * 3600 * 24
+
+    local szNextMonthDay = datetime.timestamp_2_date(nTimestamp)
+    local szFirstDayOfNextMon = datetime.firstday_of_month(szNextMonthDay)
+    local nTimestamp1 = datetime.date_2_timestamp(szFirstDayOfNextMon)
+    nTimestamp1 = nTimestamp1 - 24 * 3600
+
+    return datetime.timestamp_2_date(nTimestamp1)
+end
+
 datetime.diff_day = function (nDiff)
     local nTimestamp = datetime.timestamp()
     nTimestamp = nTimestamp + nDiff * 3600 * 24
