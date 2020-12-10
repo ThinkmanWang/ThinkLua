@@ -4,6 +4,8 @@
 --- DateTime: 2020/12/10 11:46
 ---
 
+package.path = './?.lua;' .. package.path
+local stringutils = require("common.stringutils")
 
 local datetime = {}
 
@@ -28,14 +30,8 @@ datetime.timestamp_2_date = function (nTimestamp)
     return os.date("%Y-%m-%d", nTimestamp)
 end
 
-function string_split (s, p)
-    local rt= {}
-    string.gsub(s, '[^'..p..']+', function(w) table.insert(rt, w) end )
-    return rt
-end
-
 datetime.date_2_timestamp = function (szDate)
-    local lstDate = string_split(szDate, "-")
+    local lstDate = stringutils.split(szDate, "-")
     return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=0, minute=0, second=0})
 end
 

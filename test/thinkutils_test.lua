@@ -16,3 +16,5 @@ print(thinkutils.datetime.now())
 print(thinkutils.datetime.diff_day(-3))
 print(thinkutils.datetime.hour())
 print(thinkutils.datetime.date_2_timestamp("2020-01-01"))
+
+print(json.encode(thinkutils.string.split("2020-12-13", "-")))
