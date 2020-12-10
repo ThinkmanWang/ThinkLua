@@ -114,100 +114,66 @@ function init_employee_list()
     return json.decode(szJson)
 end
 
---function tax(nPay)
---    if nPay <= 3000 then
---        return nPay * 0.03
---    elseif nPay > 3000 and nPay <= 12000 then
---        return 3000 * 0.03 + (nPay - 3000) * 0.1
---    elseif nPay > 12000 and nPay <= 25000 then
---        return 3000 * 0.03 + 9000 * 0.1 + (nPay - 12000) * 0.2
---    elseif nPay > 25000 and nPay <= 35000 then
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + (nPay - 25000) * 0.25
---    elseif nPay > 35000 and nPay <= 55000 then
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + 10000 * 0.25 + (nPay - 35000) * 0.3
---    elseif nPay > 55000 and nPay <= 80000 then
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + 10000 * 0.25 + 20000 * 0.3 + (nPay - 55000) * 0.35
---    else  -- > 80000
---        return 3000 * 0.03 + 9000 * 0.1 + 13000 * 0.2 + 10000 * 0.25 + 20000 * 0.3 + 25000 * 0.35 + (nPay - 80000) * 0.45
---    end
---end
-
-function tax(nPay)
-    if nPay <= 3000 then
-        return nPay * 0.03
-    elseif nPay > 3000 and nPay <= 12000 then
-        return tax(3000) + (nPay - 3000) * 0.1
-    elseif nPay > 12000 and nPay <= 25000 then
-        return tax(12000) + (nPay - 12000) * 0.2
-    elseif nPay > 25000 and nPay <= 35000 then
-        return tax(25000) + (nPay - 25000) * 0.25
-    elseif nPay > 35000 and nPay <= 55000 then
-        return tax(35000) + (nPay - 35000) * 0.3
-    elseif nPay > 55000 and nPay <= 80000 then
-        return tax(55000) + (nPay - 55000) * 0.35
-    else  -- > 80000
-        return tax(80000) + (nPay - 80000) * 0.45
-    end
-
-end
-
-function get_pay(nFinal)
-    local nPay = nFinal
-    while nPay - tax(nPay) < nFinal do
-        nPay = nPay + 1
-    end
-
-    return nPay
-end
-
 ---
 ---程序正式开始
 ---
 g_lstEmployee = init_employee_list()
 print(json.encode(g_lstEmployee))
 
-print("姓名,工资")
-for i = 1, #g_lstEmployee do
-    print(g_lstEmployee[i]["name"]..","..g_lstEmployee[i]["pay"])
-end
-
-
 ---
 --- TODO list
---- 1. 算出g_lstEmployee 中每个人的所得税和税后收入
+--- 1. 算出g_lstEmployee 中每个人的所得税和税后收入, 并更新g_lstEmployee
+---      1.1.用json格式print出来, 类似这样: [{"final":0,"pay":2800,"name":"A","tax":0},{"final":0,"pay":3800,"name":"B","tax":0}.......略.....]
 --- 2. 公司来了个牛人, 要求工资是税后至少35000, 问: 他税前工资至少是多少?
 --- 3. 公司又来了个牛人, 要求工资是税后至少78000, 问: 他税前工资至少是多少?
 ---
 
+--计算个人所得税=应纳税所得额*税率-速算扣除数
+--本级速算扣除数=上级最高所得额*（本级税率-上级税率）+上级速算扣除数
+function personal_tax(money)
+    local p_tax = 0
+    for i, v in pairs (money) do
+        if v>0 and v<= 3000 then
+            p_tax = money*0.03
+        elseif v>3000 and v<=12000 then
+            p_tax = (money-3000)*0.1 -210
+        elseif v>12000 and v<=25000 then
+            p_tax = (money-12000)*0.2 -1410
+        elseif v>25000 and v<=35000 then
+            p_tax = (money-25000)*0.25 -2660
+        elseif v>35000 and v<=55000 then
+            p_tax = (money-35000)*0.3 -4410
+        elseif v>55000 and v<=80000 then
+            p_tax = (money-55000)*0.35 -7160
+        elseif v>80000 then
+            p_tax = (money-80000)*0.45 -15160
+        else
+            print("负工资")
+        end
+    end
+end
+
+
+--计算税后工资
+
+
+--打印表格
 for i = 1, #g_lstEmployee do
-    g_lstEmployee[i]["养老保险"] = g_lstEmployee[i]["pay"] * 0.08
-    g_lstEmployee[i]["医疗保险"] = g_lstEmployee[i]["pay"] * 0.02
-    g_lstEmployee[i]["失业保险"] = g_lstEmployee[i]["pay"] * 0.01
-    g_lstEmployee[i]["住房公积金"] = g_lstEmployee[i]["pay"] * 0.07
-
-    local nAllBX = g_lstEmployee[i]["养老保险"] + g_lstEmployee[i]["医疗保险"] + g_lstEmployee[i]["失业保险"] + g_lstEmployee[i]["住房公积金"]
-
     print(g_lstEmployee[i]["name"])
     print(g_lstEmployee[i]["pay"])
     print(g_lstEmployee[i]["tax"])
     print(g_lstEmployee[i]["final"])
-    g_lstEmployee[i]["tax"] = tax(g_lstEmployee[i]["pay"] - nAllBX)
-    g_lstEmployee[i]["final"] = g_lstEmployee[i]["pay"] - nAllBX - g_lstEmployee[i]["tax"]
-end
-print(json.encode(g_lstEmployee))
-
-for i = 1, #g_lstEmployee do
-    dictItem = g_lstEmployee[i]
-
-    szTxt = string.format("%s,%s,%s,%s,%s,%s,%s,%s"
-            , dictItem["name"]
-            , table.concat(dictItem["scores"],",")
-            , dictItem["min"]
-            , dictItem["max"]
-            , dictItem["avg"]
-            , dictItem["variance"])
 end
 
-print("税后工资35000的税前工资是: " .. get_pay(35000))
-print("税后工资78000的税前工资是: " .. get_pay(78000))
 
+--税后35000，求税前工资
+for x = 35000,50000 do
+    for y = 35000,50000 do
+        if x>=35000 and (y-35000)*0.3-4410 == x then
+            print(y)
+        end
+    end
+end
+
+
+--税后78000，求税前工资
