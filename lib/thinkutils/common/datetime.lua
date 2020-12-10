@@ -4,6 +4,7 @@
 --- DateTime: 2020/12/10 11:46
 ---
 
+
 local datetime = {}
 
 datetime.timestamp = function ()
@@ -14,8 +15,35 @@ datetime.now = function ()
     return os.date("%Y-%m-%d %H:%M:%S", datetime.timestamp())
 end
 
+datetime.hour = function ()
+    local szHour = os.date("%H", datetime.timestamp())
+    return tonumber(szHour)
+end
+
 datetime.today = function ()
-    return os.date("%Y-%m-%d", datetime.timestamp())
+    return datetime.timestamp_2_date(datetime.timestamp())
+end
+
+datetime.timestamp_2_date = function (nTimestamp)
+    return os.date("%Y-%m-%d", nTimestamp)
+end
+
+function string_split (s, p)
+    local rt= {}
+    string.gsub(s, '[^'..p..']+', function(w) table.insert(rt, w) end )
+    return rt
+end
+
+datetime.date_2_timestamp = function (szDate)
+    local lstDate = string_split(szDate, "-")
+    return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=0, minute=0, second=0})
+end
+
+datetime.diff_day = function (nDiff)
+    local nTimestamp = datetime.timestamp()
+    nTimestamp = nTimestamp + nDiff * 3600 * 24
+
+    return datetime.timestamp_2_date(nTimestamp)
 end
 
 return datetime

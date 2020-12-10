@@ -13,3 +13,6 @@ thinkutils = require "lib.thinkutils.thinkutils"
 print(thinkutils.datetime.timestamp())
 print(thinkutils.datetime.today())
 print(thinkutils.datetime.now())
+print(thinkutils.datetime.diff_day(-3))
+print(thinkutils.datetime.hour())
+print(thinkutils.datetime.date_2_timestamp("2020-01-01"))

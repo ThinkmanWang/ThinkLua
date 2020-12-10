@@ -12,4 +12,7 @@ local thinkutils = {}
 local datetime = require("common.datetime")
 thinkutils.datetime = datetime
 
+local string = require("common.string")
+thinkutils.string = string
+
 return thinkutils
