@@ -8,14 +8,18 @@
 --package.path = package.path .. ';./common/?.lua';
 
 local thinkutils = {}
+thinkutils.common = {}
 
 local datetime = require("common.datetime")
-thinkutils.datetime = datetime
+thinkutils.common.datetime = datetime
 
 local stringutils = require("common.stringutils")
-thinkutils.string = stringutils
+thinkutils.common.string = stringutils
 
 local json = require("common.json")
-thinkutils.json = json
+thinkutils.common.json = json
+
+local csvutils = require("common.csvutils")
+thinkutils.common.csvutils = csvutils
 
 return thinkutils

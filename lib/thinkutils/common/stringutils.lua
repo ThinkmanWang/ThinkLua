@@ -13,4 +13,8 @@ stringutils.split = function (s, p)
     return rt
 end
 
+stringutils.trim = function (s)
+    return (s:gsub("^%s*(.-)%s*$", "%1"))
+end
+
 return stringutils
