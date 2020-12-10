@@ -15,4 +15,7 @@ thinkutils.datetime = datetime
 local stringutils = require("common.stringutils")
 thinkutils.string = stringutils
 
+local json = require("common.json")
+thinkutils.json = json
+
 return thinkutils
