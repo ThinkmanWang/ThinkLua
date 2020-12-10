@@ -27,7 +27,7 @@ print("last day: " .. thinkutils.datetime.lastday_of_month("2020-12-05"))
 print("first day: " .. thinkutils.datetime.firstday_of_month("2020-11-15"))
 print("last day: " .. thinkutils.datetime.lastday_of_month("2020-11-05"))
 
-print(json.encode(thinkutils.datetime.date_between_start_end("2020-11-25", "2020-12-03")))
+print(json.encode(thinkutils.datetime.date_between_start_end("2020-10-25", "2020-11-03")))
 
 
 print(json.encode(thinkutils.string.split("2020-12-13", "-")))
