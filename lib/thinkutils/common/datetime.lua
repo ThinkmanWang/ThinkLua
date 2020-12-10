@@ -32,7 +32,7 @@ end
 
 datetime.date_2_timestamp = function (szDate)
     local lstDate = stringutils.split(szDate, "-")
-    return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=0, minute=0, second=0})
+    return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=0, min=0, sec=0})
 end
 
 datetime.datetime_2_timestamp = function (szDate)
