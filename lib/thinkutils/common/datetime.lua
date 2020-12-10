@@ -35,6 +35,13 @@ datetime.date_2_timestamp = function (szDate)
     return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=0, minute=0, second=0})
 end
 
+datetime.datetime_2_timestamp = function (szDate)
+    local lstDate = stringutils.split(stringutils.split(szDate, " ")[1], "-")
+    local lstTime = stringutils.split(stringutils.split(szDate, " ")[2], ":")
+
+    return os.time({day=lstDate[3], month=lstDate[2], year=lstDate[1], hour=lstTime[1], min=lstTime[2], sec=lstTime[3]})
+end
+
 datetime.diff_day = function (nDiff)
     local nTimestamp = datetime.timestamp()
     nTimestamp = nTimestamp + nDiff * 3600 * 24
