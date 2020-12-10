@@ -66,4 +66,16 @@ datetime.diff_day = function (nDiff)
     return datetime.timestamp_2_date(nTimestamp)
 end
 
+datetime.date_between_start_end = function (szStart, szEnd)
+    local lstDate = {}
+    nStart = datetime.date_2_timestamp(szStart)
+    nEnd = datetime.date_2_timestamp(szEnd)
+
+    for nTime = nStart, nEnd, 3600 * 24 do
+        table.insert(lstDate, datetime.timestamp_2_date(nTime))
+    end
+
+    return lstDate
+end
+
 return datetime
