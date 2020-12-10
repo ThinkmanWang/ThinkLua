@@ -14,7 +14,7 @@ csvutils.csv_2_dictlist = function (szFilePath)
     local lstHeader = {}
     local lstRet = {}
 
-    if thinkutils.common.string.is_empty(szFilePath) then
+    if stringutils.is_empty(szFilePath) then
         return lstRet
     end
 

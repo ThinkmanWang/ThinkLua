@@ -6,9 +6,7 @@
 ---
 
 package.path = './lib/thinkutils/?.lua;' .. package.path
-
-json = require "lib/json"
-thinkutils = require "lib.thinkutils.thinkutils"
+local thinkutils = require "lib.thinkutils.thinkutils"
 
 print(thinkutils.common.datetime.timestamp())
 print(thinkutils.common.datetime.today())
@@ -27,13 +25,13 @@ print("last day: " .. thinkutils.common.datetime.lastday_of_month("2020-12-05"))
 print("first day: " .. thinkutils.common.datetime.firstday_of_month("2020-11-15"))
 print("last day: " .. thinkutils.common.datetime.lastday_of_month("2020-11-05"))
 
-print(json.encode(thinkutils.common.datetime.date_between_start_end("2020-10-25", "2020-11-03")))
+print(thinkutils.common.json.encode(thinkutils.common.datetime.date_between_start_end("2020-10-25", "2020-11-03")))
 
 
-print(json.encode(thinkutils.common.string.split("2020-12-13", "-")))
+print(thinkutils.common.json.encode(thinkutils.common.string.split("2020-12-13", "-")))
 
 local lstCsv = thinkutils.common.csvutils.csv_2_dictlist("test/test.csv")
---print(thinkutils.common.json.encode(lstCsv))
+print(thinkutils.common.json.encode(lstCsv))
 thinkutils.common.csvutils.dictlist_2_csv(lstCsv, "out.csv")
 
 
