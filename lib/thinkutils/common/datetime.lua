@@ -48,7 +48,7 @@ datetime.firstday_of_month = function (szAnyDate)
 end
 
 datetime.lastday_of_month = function (szAnyDate)
-    local nTimestamp = datetime.date_2_timestamp(szAnyDate)
+    local nTimestamp = datetime.date_2_timestamp(datetime.firstday_of_month(szAnyDate))
     nTimestamp = nTimestamp + 31 * 3600 * 24
 
     local szNextMonthDay = datetime.timestamp_2_date(nTimestamp)

@@ -18,8 +18,8 @@ print(thinkutils.datetime.hour())
 print(thinkutils.datetime.date_2_timestamp("2020-01-01"))
 print(thinkutils.datetime.datetime_2_timestamp("2020-01-01 12:13:14"))
 
-print("first day: " .. thinkutils.datetime.firstday_of_month("2020-02-05"))
-print("last day: " .. thinkutils.datetime.lastday_of_month("2020-02-05"))
+print("first day: " .. thinkutils.datetime.firstday_of_month("2020-01-05"))
+print("last day: " .. thinkutils.datetime.lastday_of_month("2020-01-31"))
 
 print("first day: " .. thinkutils.datetime.firstday_of_month("2020-12-05"))
 print("last day: " .. thinkutils.datetime.lastday_of_month("2020-12-05"))
