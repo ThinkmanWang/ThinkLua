@@ -35,6 +35,10 @@ local lstCsv = thinkutils.common.csvutils.csv_2_dictlist("test/test.csv")
 print(thinkutils.common.json.encode(lstCsv))
 thinkutils.common.csvutils.dictlist_2_csv(lstCsv, "out.csv", "姓名,模拟1,模拟2,模拟3,模拟4,模拟5")
 
-
+print(thinkutils.common.string.is_email("123@456.com"))
+print(thinkutils.common.string.is_email("123456.com"))
+print(thinkutils.common.string.is_phone("18621675203"))
+print(thinkutils.common.string.is_phone("1862167520"))
+print(thinkutils.common.string.is_phone("28621675203"))
 
 print("FINISHED!!!")
