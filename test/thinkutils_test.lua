@@ -33,7 +33,7 @@ print(thinkutils.common.json.encode(thinkutils.common.string.split("2020-12-13",
 
 local lstCsv = thinkutils.common.csvutils.csv_2_dictlist("test/test.csv")
 print(thinkutils.common.json.encode(lstCsv))
-thinkutils.common.csvutils.dictlist_2_csv(lstCsv, "out.csv")
+thinkutils.common.csvutils.dictlist_2_csv(lstCsv, "out.csv", "姓名,模拟1,模拟2,模拟3,模拟4,模拟5")
 
 
 

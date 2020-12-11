@@ -51,7 +51,7 @@ local function read_header_from_dict(dictItem)
     return dictHeader
 end
 
-csvutils.dictlist_2_csv = function (lstData, szFilePath)
+csvutils.dictlist_2_csv = function (lstData, szFilePath, szCsvHeader)
     if nil == lstData
             or #lstData <= 0
             or stringutils.is_empty(szFilePath) then
@@ -60,17 +60,20 @@ csvutils.dictlist_2_csv = function (lstData, szFilePath)
 
     local file = io.open(szFilePath, "w")
 
-    --print(json.encode(lstData[1]))
     local lstHeader = read_header_from_dict(lstData[1])
-    --print(json.encode(dictHeader))
 
     local szHeader = ""
-    for i = 1, #lstHeader do
-        if 1 == i then
-            szHeader = szHeader .. lstHeader[i]
-        else
-            szHeader = szHeader .. "," .. lstHeader[i]
+    if stringutils.is_empty(szCsvHeader) then
+        for i = 1, #lstHeader do
+            if 1 == i then
+                szHeader = szHeader .. lstHeader[i]
+            else
+                szHeader = szHeader .. "," .. lstHeader[i]
+            end
         end
+    else
+        szHeader = szCsvHeader
+        lstHeader = stringutils.split(szCsvHeader, ",")
     end
     szHeader = szHeader .. "\n"
 
