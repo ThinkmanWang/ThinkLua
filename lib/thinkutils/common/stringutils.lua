@@ -44,7 +44,7 @@ stringutils.is_email = function (szTxt)
     if string.find(estr, "%s") then return false end --空白符
     if string.find(estr, "[%.]+$") then return false end
 
-    _,count = string.gsub(estr, "%.", "")
+    local _,count = string.gsub(estr, "%.", "")
     if (count < 1 ) or (count > 3) then
         return false
     end
