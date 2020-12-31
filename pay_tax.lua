@@ -133,23 +133,25 @@ end
 --end
 
 function tax(nPay)
-    if nPay <= 3000 then
+    if nPay <= 36000 then
         return nPay * 0.03
-    elseif nPay > 3000 and nPay <= 12000 then
-        return tax(3000) + (nPay - 3000) * 0.1
-    elseif nPay > 12000 and nPay <= 25000 then
-        return tax(12000) + (nPay - 12000) * 0.2
-    elseif nPay > 25000 and nPay <= 35000 then
-        return tax(25000) + (nPay - 25000) * 0.25
-    elseif nPay > 35000 and nPay <= 55000 then
-        return tax(35000) + (nPay - 35000) * 0.3
-    elseif nPay > 55000 and nPay <= 80000 then
-        return tax(55000) + (nPay - 55000) * 0.35
-    else  -- > 80000
-        return tax(80000) + (nPay - 80000) * 0.45
+    elseif nPay > 36000 and nPay <= 144000 then
+        return tax(36000) + (nPay - 36000) * 0.1
+    elseif nPay > 144000 and nPay <= 300000 then
+        return tax(144000) + (nPay - 144000) * 0.2
+    elseif nPay > 300000 and nPay <= 420000 then
+        return tax(300000) + (nPay - 300000) * 0.25
+    elseif nPay > 420000 and nPay <= 660000 then
+        return tax(420000) + (nPay - 420000) * 0.3
+    elseif nPay > 660000 and nPay <= 960000 then
+        return tax(660000) + (nPay - 660000) * 0.35
+    else
+        return tax(960000) + (nPay - 960000) * 0.45
     end
 
 end
+
+print(tax(300000))
 
 function get_pay(nFinal)
     local nPay = nFinal

@@ -22,4 +22,20 @@ thinkutils.common.json = json
 local csvutils = require("common.csvutils")
 thinkutils.common.csvutils = csvutils
 
+thinkutils.common.max = function (a, b)
+    if a >= b then
+        return a
+    else
+        return b
+    end
+end
+
+thinkutils.common.min = function (a, b)
+    if a <= b then
+        return a
+    else
+        return b
+    end
+end
+
 return thinkutils

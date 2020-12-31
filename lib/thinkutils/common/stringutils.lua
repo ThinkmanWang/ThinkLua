@@ -60,4 +60,22 @@ stringutils.is_phone = function (szTxt)
     return string.match(szTxt,"[1][3-9]%d%d%d%d%d%d%d%d%d") == szTxt
 end
 
+stringutils.to_char_list = function (szTxt)
+    local lstRet = {}
+    for i = 1, #szTxt do
+        table.insert(lstRet, string.char(string.byte(szTxt, i, i)))
+    end
+
+    return lstRet
+end
+
+stringutils.to_asc_list = function (szTxt)
+    local lstRet = {}
+    for i = 1, #szTxt do
+        table.insert(lstRet, string.byte(szTxt, i, i))
+    end
+
+    return lstRet
+end
+
 return stringutils
