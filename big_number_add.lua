@@ -33,7 +33,9 @@ function big_number_add(numA, numB)
     local nMaxLength = max(#lstA, #lstB)
     --print(nMaxLength)
 
-    --填充0, 让俩数组长度一致
+    ---
+    ---填充0, 让俩数组长度一致
+    ---
     for i = 1, nMaxLength - #lstA do
         table.insert(lstA, 1, "0")
     end
@@ -45,7 +47,9 @@ function big_number_add(numA, numB)
     --print(json.encode(lstA))
     --print(json.encode(lstB))
 
-    --let's do it
+    ---
+    ---let's do it
+    ---
     local szRet = ""
     local nCarry = 0 --进位
     for i = #lstA, 1, -1 do
@@ -71,7 +75,7 @@ end
 local a = "123456789009374658693908384576847362527274848552939485"
 local b = "76475863736364859439529874592745892345782364571908340193841"
 print(big_number_add(a, b))
-print("76475987193153868814188568501130469193144891846756893133326" == big_number_add(a, b))
+--print("76475987193153868814188568501130469193144891846756893133326" == big_number_add(a, b))
 
 local c = "109"
 local d = "93"
