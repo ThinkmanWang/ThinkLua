@@ -72,6 +72,16 @@ function big_number_add(numA, numB)
     return szRet
 end
 
+function big_number_list_add(lstBigNum)
+    local szRet = "0"
+
+    for i = 1, #lstBigNum do
+        szRet = big_number_add(szRet, lstBigNum[i])
+    end
+
+    return szRet
+end
+
 local a = "123456789009374658693908384576847362527274848552939485"
 local b = "76475863736364859439529874592745892345782364571908340193841"
 print(big_number_add(a, b))
@@ -80,3 +90,52 @@ print(big_number_add(a, b))
 local c = "109"
 local d = "93"
 print(big_number_add(c, d))
+
+local lstBugNum = {}
+table.insert(lstBugNum, "1")
+table.insert(lstBugNum, "2")
+table.insert(lstBugNum, "3")
+table.insert(lstBugNum, "4")
+table.insert(lstBugNum, "5")
+table.insert(lstBugNum, "6")
+table.insert(lstBugNum, "7")
+table.insert(lstBugNum, "8")
+table.insert(lstBugNum, "9")
+table.insert(lstBugNum, "10")
+print(big_number_list_add(lstBugNum))
+
+function big_number_multiply(numA, numB)
+    local lstA = string_2_char_list(numA)
+    local lstB = string_2_char_list(numB)
+
+    local lstRet = {}
+
+    local nZero = 0
+    for i = #lstB, 1, -1 do
+        local lstTemp = {}
+        nNum = tonumber(lstB[i])
+
+        for j = 1, nNum do
+            table.insert(lstTemp, numA)
+        end
+        local szPart = big_number_list_add(lstTemp)
+
+        local szZero = ""
+        for j = 1, nZero do
+            szZero = szZero .. "0"
+        end
+        table.insert(lstRet, szPart .. szZero )
+
+        nZero = nZero + 1
+    end
+
+    return big_number_list_add(lstRet)
+end
+
+print(big_number_multiply("1", "2"))
+print(big_number_multiply("12", "2"))
+print(big_number_multiply("12", "12"))
+print(big_number_multiply("123", "123"))
+local numA = "123456789009374658693908384576847362527274848552939485"
+local numB = "76475863736364859439529874592745892345782364571908340193841"
+print(big_number_multiply(numA, numB))
