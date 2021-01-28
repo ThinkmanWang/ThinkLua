@@ -105,7 +105,6 @@ table.insert(lstBugNum, "10")
 print(big_number_list_add(lstBugNum))
 
 function big_number_multiply(numA, numB)
-    local lstA = string_2_char_list(numA)
     local lstB = string_2_char_list(numB)
 
     local lstRet = {}
@@ -113,9 +112,9 @@ function big_number_multiply(numA, numB)
     local nZero = 0
     for i = #lstB, 1, -1 do
         local lstTemp = {}
-        nNum = tonumber(lstB[i])
 
-        for j = 1, nNum do
+        nNum = tonumber(lstB[i])
+        for nPos = 1, nNum do
             table.insert(lstTemp, numA)
         end
         local szPart = big_number_list_add(lstTemp)
@@ -124,6 +123,8 @@ function big_number_multiply(numA, numB)
         for j = 1, nZero do
             szZero = szZero .. "0"
         end
+
+        --print(szPart .. szZero)
         table.insert(lstRet, szPart .. szZero )
 
         nZero = nZero + 1
