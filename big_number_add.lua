@@ -137,6 +137,7 @@ print(big_number_multiply("1", "2"))
 print(big_number_multiply("12", "2"))
 print(big_number_multiply("12", "12"))
 print(big_number_multiply("123", "123"))
+
 local numA = "123456789009374658693908384576847362527274848552939485"
 local numB = "76475863736364859439529874592745892345782364571908340193841"
 print(big_number_multiply(numA, numB))
